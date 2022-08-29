@@ -19,7 +19,7 @@ class ProductGalleryController extends Controller
     public function index(Product $product)
     {
         if(request()->ajax()){
-            $query = ProductGallery::query();
+            $query = ProductGallery::where('products_id', $product->id);;
 
             return DataTables::of($query)
                 ->addColumn('action', function($item){
@@ -121,7 +121,7 @@ class ProductGalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductGallery $gallery)
+    public function destroy(ProductGallery  $gallery)
     {
         $gallery->delete();
 
